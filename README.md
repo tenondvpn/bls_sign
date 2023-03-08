@@ -1,6 +1,6 @@
 # Powered by libBLS: a C++ library for BLS Threshold Signatures
 
-##build
+## build
 cd ./deps && sh build.sh
 cd ../ && mkdir -p build && cd build && cmake .. && make -j4
 
