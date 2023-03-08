@@ -10,7 +10,7 @@ env_restore_original() {
 }
 
 env_save_original
-
+cp -rf ./libff/libff ./deps_inst/x86_or_x64/include/
 # colors/basic
 COLOR_RESET='\033[0m' # No Color
 COLOR_BLACK='\033[0;30m'
