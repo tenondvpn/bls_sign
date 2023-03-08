@@ -1,0 +1,397 @@
+The system is: Linux - 3.10.0-1160.el7.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/local/gcc-8.3.0/bin/gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/root/zjchain/third_party/libBLS/build/CMakeFiles/3.25.1/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/local/gcc-8.3.0/bin/g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/root/zjchain/third_party/libBLS/build/CMakeFiles/3.25.1/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-IpDrJj
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3f6e3/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3f6e3.dir/build.make CMakeFiles/cmTC_3f6e3.dir/build
+gmake[1]: Entering directory `/root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-IpDrJj'
+Building C object CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o
+/usr/local/gcc-8.3.0/bin/gcc   -v -o CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o -c /root/tools/cmake-3.25.1-linux-x86_64/share/cmake-3.25/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/usr/local/gcc-8.3.0/bin/gcc
+Target: x86_64-pc-linux-gnu
+Configured with: ../configure --prefix=/usr/local/gcc-8.3.0 --enable-checking=release --enable-languages=c,c++ --disable-multilib
+Thread model: posix
+gcc version 8.3.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/cc1 -quiet -v /root/tools/cmake-3.25.1-linux-x86_64/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccvdnVum.s
+GNU C17 (GCC) version 8.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 8.3.0, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../x86_64-pc-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include
+ /usr/local/include
+ /usr/local/gcc-8.3.0/include
+ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed
+ /usr/include
+End of search list.
+GNU C17 (GCC) version 8.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 8.3.0, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: c9b626fe00f5d61c7ae5636e110a4a25
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o /tmp/ccvdnVum.s
+GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7
+COMPILER_PATH=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+Linking C executable cmTC_3f6e3
+/root/tools/cmake-3.25.1-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3f6e3.dir/link.txt --verbose=1
+/usr/local/gcc-8.3.0/bin/gcc  -v CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o -o cmTC_3f6e3 
+Using built-in specs.
+COLLECT_GCC=/usr/local/gcc-8.3.0/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: ../configure --prefix=/usr/local/gcc-8.3.0 --enable-checking=release --enable-languages=c,c++ --disable-multilib
+Thread model: posix
+gcc version 8.3.0 (GCC) 
+COMPILER_PATH=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3f6e3' '-mtune=generic' '-march=x86-64'
+ /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/collect2 -plugin /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/liblto_plugin.so -plugin-opt=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccl627yq.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_3f6e3 /lib/../lib64/crt1.o /lib/../lib64/crti.o /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0 -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../.. CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3f6e3' '-mtune=generic' '-march=x86-64'
+gmake[1]: Leaving directory `/root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-IpDrJj'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include]
+    add: [/usr/local/include]
+    add: [/usr/local/gcc-8.3.0/include]
+    add: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include] ==> [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/local/gcc-8.3.0/include] ==> [/usr/local/gcc-8.3.0/include]
+  collapse include dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed] ==> [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include;/usr/local/include;/usr/local/gcc-8.3.0/include;/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed;/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-IpDrJj]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3f6e3/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3f6e3.dir/build.make CMakeFiles/cmTC_3f6e3.dir/build]
+  ignore line: [gmake[1]: Entering directory `/root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-IpDrJj']
+  ignore line: [Building C object CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/local/gcc-8.3.0/bin/gcc   -v -o CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o -c /root/tools/cmake-3.25.1-linux-x86_64/share/cmake-3.25/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/local/gcc-8.3.0/bin/gcc]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/usr/local/gcc-8.3.0 --enable-checking=release --enable-languages=c c++ --disable-multilib]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 8.3.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/cc1 -quiet -v /root/tools/cmake-3.25.1-linux-x86_64/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccvdnVum.s]
+  ignore line: [GNU C17 (GCC) version 8.3.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 8.3.0  GMP version 6.1.0  MPFR version 3.1.4  MPC version 1.0.3  isl version isl-0.18-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/local/gcc-8.3.0/include]
+  ignore line: [ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C17 (GCC) version 8.3.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 8.3.0  GMP version 6.1.0  MPFR version 3.1.4  MPC version 1.0.3  isl version isl-0.18-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: c9b626fe00f5d61c7ae5636e110a4a25]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o /tmp/ccvdnVum.s]
+  ignore line: [GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7]
+  ignore line: [COMPILER_PATH=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking C executable cmTC_3f6e3]
+  ignore line: [/root/tools/cmake-3.25.1-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3f6e3.dir/link.txt --verbose=1]
+  ignore line: [/usr/local/gcc-8.3.0/bin/gcc  -v CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o -o cmTC_3f6e3 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/local/gcc-8.3.0/bin/gcc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/usr/local/gcc-8.3.0 --enable-checking=release --enable-languages=c c++ --disable-multilib]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 8.3.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3f6e3' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/collect2 -plugin /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/liblto_plugin.so -plugin-opt=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccl627yq.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_3f6e3 /lib/../lib64/crt1.o /lib/../lib64/crti.o /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0 -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../.. CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o /lib/../lib64/crtn.o]
+    arg [/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccl627yq.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_3f6e3] ==> ignore
+    arg [/lib/../lib64/crt1.o] ==> obj [/lib/../lib64/crt1.o]
+    arg [/lib/../lib64/crti.o] ==> obj [/lib/../lib64/crti.o]
+    arg [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o] ==> obj [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o]
+    arg [-L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0] ==> dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0]
+    arg [-L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64] ==> dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../..] ==> dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../..]
+    arg [CMakeFiles/cmTC_3f6e3.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o] ==> obj [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o]
+    arg [/lib/../lib64/crtn.o] ==> obj [/lib/../lib64/crtn.o]
+  collapse obj [/lib/../lib64/crt1.o] ==> [/lib64/crt1.o]
+  collapse obj [/lib/../lib64/crti.o] ==> [/lib64/crti.o]
+  collapse obj [/lib/../lib64/crtn.o] ==> [/lib64/crtn.o]
+  collapse library dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0] ==> [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0]
+  collapse library dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64] ==> [/usr/local/gcc-8.3.0/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../..] ==> [/usr/local/gcc-8.3.0/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit objs: [/lib64/crt1.o;/lib64/crti.o;/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o;/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o;/lib64/crtn.o]
+  implicit dirs: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0;/usr/local/gcc-8.3.0/lib64;/lib64;/usr/lib64;/usr/local/gcc-8.3.0/lib]
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-JNwwwa
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3e96a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3e96a.dir/build.make CMakeFiles/cmTC_3e96a.dir/build
+gmake[1]: Entering directory `/root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-JNwwwa'
+Building CXX object CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o
+/usr/local/gcc-8.3.0/bin/g++   -v -o CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o -c /root/tools/cmake-3.25.1-linux-x86_64/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/usr/local/gcc-8.3.0/bin/g++
+Target: x86_64-pc-linux-gnu
+Configured with: ../configure --prefix=/usr/local/gcc-8.3.0 --enable-checking=release --enable-languages=c,c++ --disable-multilib
+Thread model: posix
+gcc version 8.3.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/cc1plus -quiet -v -D_GNU_SOURCE /root/tools/cmake-3.25.1-linux-x86_64/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o -version -o /tmp/cc4oGEor.s
+GNU C++14 (GCC) version 8.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 8.3.0, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../x86_64-pc-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0
+ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/x86_64-pc-linux-gnu
+ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/backward
+ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include
+ /usr/local/include
+ /usr/local/gcc-8.3.0/include
+ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed
+ /usr/include
+End of search list.
+GNU C++14 (GCC) version 8.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 8.3.0, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 51051b53f302c84639693bcbaf471571
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc4oGEor.s
+GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7
+COMPILER_PATH=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+Linking CXX executable cmTC_3e96a
+/root/tools/cmake-3.25.1-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3e96a.dir/link.txt --verbose=1
+/usr/local/gcc-8.3.0/bin/g++  -v CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_3e96a 
+Using built-in specs.
+COLLECT_GCC=/usr/local/gcc-8.3.0/bin/g++
+COLLECT_LTO_WRAPPER=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: ../configure --prefix=/usr/local/gcc-8.3.0 --enable-checking=release --enable-languages=c,c++ --disable-multilib
+Thread model: posix
+gcc version 8.3.0 (GCC) 
+COMPILER_PATH=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3e96a' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/collect2 -plugin /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/liblto_plugin.so -plugin-opt=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxt41Wt.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_3e96a /lib/../lib64/crt1.o /lib/../lib64/crti.o /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0 -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../.. CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3e96a' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+gmake[1]: Leaving directory `/root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-JNwwwa'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0]
+    add: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/x86_64-pc-linux-gnu]
+    add: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/backward]
+    add: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include]
+    add: [/usr/local/include]
+    add: [/usr/local/gcc-8.3.0/include]
+    add: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0] ==> [/usr/local/gcc-8.3.0/include/c++/8.3.0]
+  collapse include dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/x86_64-pc-linux-gnu] ==> [/usr/local/gcc-8.3.0/include/c++/8.3.0/x86_64-pc-linux-gnu]
+  collapse include dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/backward] ==> [/usr/local/gcc-8.3.0/include/c++/8.3.0/backward]
+  collapse include dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include] ==> [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/local/gcc-8.3.0/include] ==> [/usr/local/gcc-8.3.0/include]
+  collapse include dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed] ==> [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/local/gcc-8.3.0/include/c++/8.3.0;/usr/local/gcc-8.3.0/include/c++/8.3.0/x86_64-pc-linux-gnu;/usr/local/gcc-8.3.0/include/c++/8.3.0/backward;/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include;/usr/local/include;/usr/local/gcc-8.3.0/include;/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed;/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-JNwwwa]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3e96a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3e96a.dir/build.make CMakeFiles/cmTC_3e96a.dir/build]
+  ignore line: [gmake[1]: Entering directory `/root/zjchain/third_party/libBLS/build/CMakeFiles/CMakeScratch/TryCompile-JNwwwa']
+  ignore line: [Building CXX object CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/local/gcc-8.3.0/bin/g++   -v -o CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o -c /root/tools/cmake-3.25.1-linux-x86_64/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/local/gcc-8.3.0/bin/g++]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/usr/local/gcc-8.3.0 --enable-checking=release --enable-languages=c c++ --disable-multilib]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 8.3.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/cc1plus -quiet -v -D_GNU_SOURCE /root/tools/cmake-3.25.1-linux-x86_64/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o -version -o /tmp/cc4oGEor.s]
+  ignore line: [GNU C++14 (GCC) version 8.3.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 8.3.0  GMP version 6.1.0  MPFR version 3.1.4  MPC version 1.0.3  isl version isl-0.18-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0]
+  ignore line: [ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/x86_64-pc-linux-gnu]
+  ignore line: [ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../include/c++/8.3.0/backward]
+  ignore line: [ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/local/gcc-8.3.0/include]
+  ignore line: [ /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++14 (GCC) version 8.3.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 8.3.0  GMP version 6.1.0  MPFR version 3.1.4  MPC version 1.0.3  isl version isl-0.18-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 51051b53f302c84639693bcbaf471571]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc4oGEor.s]
+  ignore line: [GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7]
+  ignore line: [COMPILER_PATH=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking CXX executable cmTC_3e96a]
+  ignore line: [/root/tools/cmake-3.25.1-linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3e96a.dir/link.txt --verbose=1]
+  ignore line: [/usr/local/gcc-8.3.0/bin/g++  -v CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_3e96a ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/local/gcc-8.3.0/bin/g++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ../configure --prefix=/usr/local/gcc-8.3.0 --enable-checking=release --enable-languages=c c++ --disable-multilib]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 8.3.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3e96a' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/collect2 -plugin /usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/liblto_plugin.so -plugin-opt=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccxt41Wt.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_3e96a /lib/../lib64/crt1.o /lib/../lib64/crti.o /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0 -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../.. CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o /lib/../lib64/crtn.o]
+    arg [/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/local/gcc-8.3.0/libexec/gcc/x86_64-pc-linux-gnu/8.3.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccxt41Wt.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_3e96a] ==> ignore
+    arg [/lib/../lib64/crt1.o] ==> obj [/lib/../lib64/crt1.o]
+    arg [/lib/../lib64/crti.o] ==> obj [/lib/../lib64/crti.o]
+    arg [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o] ==> obj [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o]
+    arg [-L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0] ==> dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0]
+    arg [-L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64] ==> dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../..] ==> dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../..]
+    arg [CMakeFiles/cmTC_3e96a.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o] ==> obj [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o]
+    arg [/lib/../lib64/crtn.o] ==> obj [/lib/../lib64/crtn.o]
+  collapse obj [/lib/../lib64/crt1.o] ==> [/lib64/crt1.o]
+  collapse obj [/lib/../lib64/crti.o] ==> [/lib64/crti.o]
+  collapse obj [/lib/../lib64/crtn.o] ==> [/lib64/crtn.o]
+  collapse library dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0] ==> [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0]
+  collapse library dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../../../lib64] ==> [/usr/local/gcc-8.3.0/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/../../..] ==> [/usr/local/gcc-8.3.0/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit objs: [/lib64/crt1.o;/lib64/crti.o;/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtbegin.o;/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0/crtend.o;/lib64/crtn.o]
+  implicit dirs: [/usr/local/gcc-8.3.0/lib/gcc/x86_64-pc-linux-gnu/8.3.0;/usr/local/gcc-8.3.0/lib64;/lib64;/usr/lib64;/usr/local/gcc-8.3.0/lib]
+  implicit fwks: []
+
+

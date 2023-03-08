@@ -1,0 +1,2 @@
+/usr/bin/ar qc libte.a CMakeFiles/te.dir/threshold_encryption.cpp.o CMakeFiles/te.dir/TEDecryptSet.cpp.o CMakeFiles/te.dir/TEPrivateKeyShare.cpp.o CMakeFiles/te.dir/TEPrivateKey.cpp.o CMakeFiles/te.dir/TEPublicKey.cpp.o CMakeFiles/te.dir/TEPublicKeyShare.cpp.o CMakeFiles/te.dir/__/dkg/dkg.cpp.o CMakeFiles/te.dir/__/dkg/DKGTEWrapper.cpp.o CMakeFiles/te.dir/__/dkg/DKGTESecret.cpp.o CMakeFiles/te.dir/__/tools/utils.cpp.o
+/usr/bin/ranlib libte.a
