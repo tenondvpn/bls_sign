@@ -1,7 +1,9 @@
 # Powered by libBLS: a C++ library for BLS Threshold Signatures
 
 ## build
-cd ./deps && sh build.sh
+git clone git@github.com:tenondvpn/bls_sign.git
+
+cd ./bls_sign/deps && sh build.sh
 
 cd ../ && mkdir -p build && cd build && cmake .. && make -j4
 
