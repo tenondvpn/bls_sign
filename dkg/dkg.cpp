@@ -89,6 +89,33 @@ std::vector< libff::alt_bn128_Fr > Dkg::SecretKeyContribution(
     return secret_key_contribution;
 }
 
+libff::alt_bn128_Fr Dkg::PolynomialValue(const Polynomial& pol, libff::alt_bn128_Fr point, size_t t) {
+    // calculate value of polynomial in a random integer point
+    libff::alt_bn128_Fr value = libff::alt_bn128_Fr::zero();
+
+    libff::alt_bn128_Fr pow = libff::alt_bn128_Fr::one();
+    for (size_t i = 0; i < t; ++i) {
+        if ( i == this->t_ - 1 && pol[i] == libff::alt_bn128_Fr::zero() ) {
+            throw std::logic_error( "Error, incorrect degree of a polynomial" );
+        }
+        value += pol[i] * pow;
+        pow *= point;
+    }
+
+    return value;
+}
+
+std::vector< libff::alt_bn128_Fr > Dkg::SecretKeyContribution(
+    const std::vector< libff::alt_bn128_Fr >& polynomial, size_t n, size_t t) {
+    // calculate for each node a list of secret values that will be used for verification
+    std::vector< libff::alt_bn128_Fr > secret_key_contribution(n);
+    for (size_t i = 0; i < n; ++i) {
+        secret_key_contribution[i] = PolynomialValue(polynomial, libff::alt_bn128_Fr(i + 1), t);
+    }
+
+    return secret_key_contribution;
+}
+
 libff::alt_bn128_Fr Dkg::SecretKeyShareCreate(
     const std::vector< libff::alt_bn128_Fr >& secret_key_contribution ) {
     // create secret key share from secret key contribution
@@ -115,6 +142,24 @@ libff::alt_bn128_G2 Dkg::GetFirstVerification(
     return (value + power( libff::alt_bn128_Fr( idx + 1 ), 0 ) * verification_first);
 }
 
+bool Dkg::GetVerification(
+        size_t idx,
+        const std::vector< libff::alt_bn128_G2 >& verification_vector,
+        size_t t,
+        libff::alt_bn128_G2* value) {
+    // idx-th node verifies that share corresponds to the verification vector
+    *value = libff::alt_bn128_G2::zero();
+    for (size_t i = 0; i < t; ++i) {
+        if (!ThresholdUtils::ValidateKey(verification_vector[i])) {
+            return false;
+        }
+
+        *value = *value + power(libff::alt_bn128_Fr(idx + 1), i) * verification_vector[i];
+    }
+
+    return true;
+}
+
 bool Dkg::Verification( size_t idx, libff::alt_bn128_Fr share,
     const std::vector< libff::alt_bn128_G2 >& verification_vector ) {
     // idx-th node verifies that share corresponds to the verification vector
@@ -128,6 +173,36 @@ bool Dkg::Verification( size_t idx, libff::alt_bn128_Fr share,
 
     return ( value == share * libff::alt_bn128_G2::one() );
 }
+
+bool Dkg::Verification(size_t idx, libff::alt_bn128_Fr share,
+    const std::vector< libff::alt_bn128_G2 >& verification_vector, size_t t) {
+    // idx-th node verifies that share corresponds to the verification vector
+    libff::alt_bn128_G2 value = libff::alt_bn128_G2::zero();
+    for (size_t i = 0; i < t; ++i) {
+        if (!ThresholdUtils::ValidateKey(verification_vector[i])) {
+            return false;
+        }
+        value = value + power(libff::alt_bn128_Fr(idx + 1), i) * verification_vector[i];
+    }
+
+    return (value == share * libff::alt_bn128_G2::one());
+}
+
+bool Dkg::Verification(size_t idx, libff::alt_bn128_Fr share,
+    const std::vector< libff::alt_bn128_G2 >& verification_vector,
+    size_t min_t, size_t max_t, libff::alt_bn128_G2* value) {
+    // idx-th node verifies that share corresponds to the verification vector
+    for (size_t i = min_t; i < max_t; ++i) {
+        if (!ThresholdUtils::ValidateKey(verification_vector[i])) {
+            return false;
+        }
+
+        *value = *value + power(libff::alt_bn128_Fr(idx + 1), i) * verification_vector[i];
+    }
+
+    return (*value == share * libff::alt_bn128_G2::one());
+}
+
 
 libff::alt_bn128_G2 Dkg::GetPublicKeyFromSecretKey( const libff::alt_bn128_Fr& secret_key ) {
     libff::alt_bn128_G2 public_key = secret_key * libff::alt_bn128_G2::one();
