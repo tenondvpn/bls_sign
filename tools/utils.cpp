@@ -142,25 +142,20 @@ std::vector< libff::alt_bn128_Fr > ThresholdUtils::LagrangeCoeffs(
     }
 
     std::vector< libff::alt_bn128_Fr > res( t );
-
     libff::alt_bn128_Fr w = libff::alt_bn128_Fr::one();
-
     for ( size_t i = 0; i < t; ++i ) {
-        w *= libff::alt_bn128_Fr( idx[i] );
-    }
-
-    for ( size_t i = 0; i < t; ++i ) {
-        libff::alt_bn128_Fr v = libff::alt_bn128_Fr( idx[i] );
+        auto i_v = libff::alt_bn128_Fr(idx[i]);
+        libff::alt_bn128_Fr v = i_v;
+        w *= i_v;
 
         for ( size_t j = 0; j < t; ++j ) {
             if ( j != i ) {
-                if ( libff::alt_bn128_Fr( idx[i] ) == libff::alt_bn128_Fr( idx[j] ) ) {
+                if ( idx[i] == idx[j]) {
                     throw IncorrectInput(
                         "during the interpolation, have same indexes in list of indexes" );
                 }
 
-                v *= ( libff::alt_bn128_Fr( idx[j] ) -
-                       libff::alt_bn128_Fr( idx[i] ) );  // calculating Lagrange coefficients
+                v *= ( libff::alt_bn128_Fr( idx[j] ) - i_v);  // calculating Lagrange coefficients
             }
         }
 
