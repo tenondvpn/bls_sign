@@ -135,33 +135,42 @@ libff::alt_bn128_G1 ThresholdUtils::stringToG1( const std::string& str ) {
     return ret;
 }
 
-std::vector< libff::alt_bn128_Fr > ThresholdUtils::LagrangeCoeffs(
-    const std::vector< size_t >& idx, size_t t ) {
+void ThresholdUtils::LagrangeCoeffs(
+    const std::vector< size_t >& idx, size_t t, std::vector< libff::alt_bn128_Fr >& res) {
     if ( idx.size() < t ) {
         throw IncorrectInput( "not enough participants in the threshold group" );
     }
 
-    std::vector< libff::alt_bn128_Fr > res( t );
     libff::alt_bn128_Fr w = libff::alt_bn128_Fr::one();
+
+    libff::alt_bn128_Fr fr_arr[t];
     for ( size_t i = 0; i < t; ++i ) {
-        auto i_v = libff::alt_bn128_Fr(idx[i]);
-        libff::alt_bn128_Fr v = i_v;
-        w *= i_v;
+        fr_arr[i] = libff::alt_bn128_Fr(idx[i]);
+        w *= fr_arr[i];
+    }
+
+    for ( size_t i = 0; i < t; ++i ) {
+        libff::alt_bn128_Fr v = fr_arr[i];
 
         for ( size_t j = 0; j < t; ++j ) {
             if ( j != i ) {
-                if ( idx[i] == idx[j]) {
+                if ( idx[i] == idx[j] ) {
                     throw IncorrectInput(
                         "during the interpolation, have same indexes in list of indexes" );
                 }
 
-                v *= ( libff::alt_bn128_Fr( idx[j] ) - i_v);  // calculating Lagrange coefficients
+                v *= (fr_arr[j] - fr_arr[i]);  // calculating Lagrange coefficients
             }
         }
 
         res[i] = w * v.invert();
     }
+}
 
+std::vector< libff::alt_bn128_Fr > ThresholdUtils::LagrangeCoeffs(
+    const std::vector< size_t >& idx, size_t t) {
+    std::vector< libff::alt_bn128_Fr > res(t);
+    LagrangeCoeffs(idx, t, res);
     return res;
 }
 
