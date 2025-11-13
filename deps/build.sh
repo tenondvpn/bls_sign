@@ -253,6 +253,8 @@ else
 	PARALLEL_MAKE_OPTIONS=""
 fi
 
+PARALLEL_COUNT=$NUMBER_OF_CPU_CORES
+PARALLEL_MAKE_OPTIONS=" -j $PARALLEL_COUNT "
 export CUSTOM_BUILD_ROOT=$PWD
 export INSTALL_ROOT_RELATIVE="$CUSTOM_BUILD_ROOT/deps_inst/$ARCH"
 mkdir -p "$INSTALL_ROOT_RELATIVE"
@@ -607,52 +609,67 @@ then
 	then
 		env_restore
 		cd "$SOURCES_ROOT"
-		if [ ! -d "boost_1_68_0" ];
+		BOOST_NAME="boost_1_87_0"
+		BOOST_VERSION="1.87.0"
+		if [ "$UNIX_SYSTEM_NAME" = "Darwin" ] || [ "${WITH_EMSCRIPTEN}" -eq 1 ];
 		then
-			if [ ! -f "boost_1_68_0.tar.bz2" ];
+			BOOST_NAME="boost_1_88_0"
+			BOOST_VERSION="1.88.0"
+		fi
+		if [ ! -d "${BOOST_NAME}" ];
+		then
+			if [ ! -f "${BOOST_NAME}.tar.bz2" ];
 			then
 				eval echo -e "${COLOR_INFO}downloading it${COLOR_DOTS}...${COLOR_RESET}"
-                eval "$WGET"  https://boostorg.jfrog.io/artifactory/main/release/1.68.0/source/boost_1_68_0.tar.bz2
+				eval "$WGET" https://archives.boost.io/release/${BOOST_VERSION}/source/${BOOST_NAME}.tar.bz2
 			fi
-			echo -e "${COLOR_INFO}unpacking it${COLOR_DOTS}...${COLOR_RESET}"
-            tar -xf boost_1_68_0.tar.bz2
+                        echo -e "${COLOR_INFO}unpacking it${COLOR_DOTS}...${COLOR_RESET}"
+                        tar -xf ${BOOST_NAME}.tar.bz2
 		fi
-		cd boost_1_68_0
+		cd ${BOOST_NAME}
 		echo -e "${COLOR_INFO}configuring and building it${COLOR_DOTS}...${COLOR_RESET}"
 		if [[ "${WITH_EMSCRIPTEN}" -eq 1 ]];
 		then
 			BOOST_LIBRARIES="program_options"
 		else
-			BOOST_LIBRARIES="system,thread,filesystem,regex,atomic,program_options"
+			BOOST_LIBRARIES="system,thread,filesystem,regex,atomic,program_options,context"
+			if [ "$SKALED_DEPS_CHAIN" = "1" ];
+			then
+                                BOOST_LIBRARIES="${BOOST_LIBRARIES},iostreams,fiber,log,chrono,date_time"
+			fi
 		fi
 		eval ./bootstrap.sh --prefix="$INSTALL_ROOT" --with-libraries="$BOOST_LIBRARIES"
 
-	if [ ${ARCH} = "arm" ]
-	then
-		sed -i -e 's#using gcc ;#using gcc : arm : /usr/local/toolchains/gcc7.2-arm/bin/arm-linux-gnueabihf-g++ ;#g' project-config.jam
-		eval ./b2 "${CONF_CROSSCOMPILING_OPTS_BOOST}" cxxflags=-fPIC cflags=-fPIC "${PARALLEL_MAKE_OPTIONS}" --prefix="$INSTALL_ROOT" --layout=system variant=debug link=static threading=multi install
-	else
-		if [ "$UNIX_SYSTEM_NAME" = "Darwin" ];
-		then
-			eval ./b2 cxxflags=-fPIC toolset=clang cxxstd=14 cflags=-fPIC "${PARALLEL_MAKE_OPTIONS}" --prefix="$INSTALL_ROOT" --layout=system variant=debug link=static threading=multi install
+		if [ "$DEBUG" = "1" ]; then
+			variant=debug
 		else
-			if [[ "${WITH_EMSCRIPTEN}" -eq 1 ]];
+			variant=release
+		fi
+
+		if [ ${ARCH} = "arm" ]
+		then
+			sed -i -e 's#using gcc ;#using gcc : arm : /usr/local/toolchains/gcc7.2-arm/bin/arm-linux-gnueabihf-g++ ;#g' project-config.jam
+			eval ./b2 "${CONF_CROSSCOMPILING_OPTS_BOOST}" cxxflags=-fPIC cflags=-fPIC "${PARALLEL_MAKE_OPTIONS}" --prefix="$INSTALL_ROOT" --layout=system variant=${variant} link=static threading=multi install
+		else
+			if [ "$UNIX_SYSTEM_NAME" = "Darwin" ];
 			then
-				eval ./b2 toolset=emscripten cxxflags=-fPIC cxxstd=14 cflags=-fPIC "${PARALLEL_MAKE_OPTIONS}" --prefix="$INSTALL_ROOT" --disable-icu --layout=system variant=debug link=static install
-				cd bin.v2/libs/program_options/build/emscripten-2.0.31/debug/cxxstd-14-iso/link-static/threading-multi/
-				eval emar q "libboost_program_options.a" ./*.bc
-				eval cp "libboost_program_options.a" "${LIBRARIES_ROOT}"
+				eval ./b2 cxxflags=-fPIC toolset=clang cxxstd=20 cflags=-fPIC "${PARALLEL_MAKE_OPTIONS}" --prefix="$INSTALL_ROOT" --layout=system variant=${variant} link=static threading=multi install
 			else
-				eval ./b2 cxxflags=-fPIC cxxstd=14 cflags=-fPIC "${PARALLEL_MAKE_OPTIONS}" --prefix="$INSTALL_ROOT" --layout=system variant=debug link=static threading=multi install
+				if [[ "${WITH_EMSCRIPTEN}" -eq 1 ]];
+				then
+                                        eval ./b2 toolset=emscripten cxxflags=-fPIC cxxstd=20 cflags=-fPIC "${PARALLEL_MAKE_OPTIONS}" --prefix="$INSTALL_ROOT" --disable-icu --layout=system variant=${variant} link=static install
+				else
+                                        eval ./b2 cxxflags=-fPIC cxxstd=20 cflags=-fPIC "${PARALLEL_MAKE_OPTIONS}" --prefix="$INSTALL_ROOT" --layout=system variant=${variant} link=static threading=multi install
+				fi
 			fi
 		fi
-	fi
 		cd ..
 		cd "$SOURCES_ROOT"
 	else
 		echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
 	fi
 fi
+
 
 if [ "$WITH_OPENSSL" = "yes" ];
 then
@@ -789,7 +806,7 @@ then
 			eval emcmake "$CMAKE" "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" -DGMP_INCLUDE_DIR="$INCLUDE_ROOT" -DGMP_LIBRARY="$LIBRARIES_ROOT" -DWITH_PROCPS=OFF -DCURVE=ALT_BN128 -DUSE_ASM=OFF ..
 			eval emmake "$MAKE" "${PARALLEL_MAKE_OPTIONS}"
 		else
-			eval "$CMAKE" "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" .. -DWITH_PROCPS=OFF
+			eval "$CMAKE" "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" .. -DWITH_PROCPS=OFF
 			eval "$MAKE" "${PARALLEL_MAKE_OPTIONS}"
 		fi
 		eval "$MAKE" "${PARALLEL_MAKE_OPTIONS}" install
@@ -854,12 +871,12 @@ then
 			if [ ! -d "argtable2" ];
 			then
 				echo -e "${COLOR_INFO}getting it from git${COLOR_DOTS}...${COLOR_RESET}"
-							git clone https://github.com/jonathanmarvens/argtable2.git
+							git clone https://github.com/tenondvpn/argtable2.git
 				echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
 				cd argtable2
 				mkdir -p build
 				cd build
-				$CMAKE "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" ..
+				$CMAKE "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" ..
 				cd ..
 			else
 				cd argtable2
@@ -877,66 +894,58 @@ fi
 
 if [ "$WITH_CURL" = "yes" ];
 then
-	echo -e "${COLOR_SEPARATOR}==================== ${COLOR_PROJECT_NAME}CURL${COLOR_SEPARATOR} =========================================${COLOR_RESET}"
-	if [ "$UNIX_SYSTEM_NAME" = "Darwin" ];
-	then
-		echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
-	else
-		if [ ! -f "$INSTALL_ROOT/lib/libcurl.a" ];
-		then
-			# https://github.com/curl/curl
-			env_restore
-			cd "$SOURCES_ROOT"
-			export PKG_CONFIG_PATH_SAVED=$PKG_CONFIG_PATH
-			export PKG_CONFIG_PATH=/$INSTALL_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
-			if [ ! -d "curl" ];
-			then
-				if [ ! -f "curl-from-git.tar.gz" ];
-				then
-					echo -e "${COLOR_INFO}getting it from git${COLOR_DOTS}...${COLOR_RESET}"
-					git clone https://github.com/curl/curl.git
-					echo -e "${COLOR_INFO}archiving it${COLOR_DOTS}...${COLOR_RESET}"
-					tar -czf curl-from-git.tar.gz ./curl
-				else
-					echo -e "${COLOR_INFO}unpacking it${COLOR_DOTS}...${COLOR_RESET}"
-					tar -xzf curl-from-git.tar.gz
-				fi
-				#
-				# l_sergiy: moved into $PREDOWNLOADED_ROOT
-				#
-		# # 		echo -e "${COLOR_INFO}unpacking it${COLOR_DOTS}...${COLOR_RESET}"
-		# # 		tar -xzf $PREDOWNLOADED_ROOT/curl-from-git.tar.gz
-				#
-				#
-				#
-				echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
-				cd curl
-				mkdir -p build
-				cd build
-				#$CMAKE "${CMAKE_CROSSCOMPILING_OPTS}" -DBUILD_CURL_EXE=OFF -DBUILD_TESTING=OFF -DCMAKE_USE_LIBSSH2=OFF -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCURL_STATICLIB=ON -DOPENSSL_CRYPTO_LIBRARY="$INSTALL_ROOT/lib/libcrypto.a" -DOPENSSL_INCLUDE_DIR="$INSTALL_ROOT/include" -DOPENSSL_SSL_LIBRARY="$INSTALL_ROOT/lib/libssl.a" CMAKE_C_COMPILER_WORKS=ON CMAKE_CXX_COMPILER_WORKS=ON ..
-				cmake "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DOPENSSL_ROOT_DIR="$SOURCES_ROOT/openssl" -DBUILD_CURL_EXE=OFF -DBUILD_TESTING=OFF -DCMAKE_USE_LIBSSH2=OFF -DBUILD_SHARED_LIBS=OFF -DCURL_DISABLE_LDAP=ON -DCURL_STATICLIB=ON -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" ..
-				echo " " >> lib/curl_config.h
-				echo "#define HAVE_POSIX_STRERROR_R 1" >> lib/curl_config.h
-				echo " " >> lib/curl_config.h
-				### Set HAVE_POSIX_STRERROR_R to 1 in build/lib/curl_config.h
-				cd ../..
-			fi
-			echo -e "${COLOR_INFO}building it${COLOR_DOTS}...${COLOR_RESET}"
-			cd curl/build
-			$MAKE ${PARALLEL_MAKE_OPTIONS}
-			$MAKE ${PARALLEL_MAKE_OPTIONS} install
-			if [ "$DEBUG" = "1" ];
-			then
-				mv "$INSTALL_ROOT/lib/libcurl-d.a" "$INSTALL_ROOT/lib/libcurl.a" &> /dev/null
-			fi
-			cd ..
-			export PKG_CONFIG_PATH=$PKG_CONFIG_PATH_SAVED
-			export PKG_CONFIG_PATH_SAVED=
-			cd "$SOURCES_ROOT"
-		else
-			echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
-		fi
-	fi
+        echo -e "${COLOR_SEPARATOR}==================== ${COLOR_PROJECT_NAME}CURL${COLOR_SEPARATOR} =========================================${COLOR_RESET}"
+        if [ "$UNIX_SYSTEM_NAME" = "Darwin" ];
+        then
+                echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
+        else
+                if [ ! -f "$INSTALL_ROOT/lib/libcurl.a" ];
+                then
+                        env_restore
+                        cd "$SOURCES_ROOT"
+                        export PKG_CONFIG_PATH_SAVED=$PKG_CONFIG_PATH
+                        export PKG_CONFIG_PATH=/$INSTALL_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
+                        if [ ! -d "curl" ];
+                        then
+                                if [ ! -f "curl-from-git.tar.gz" ];
+                                then
+                                        echo -e "${COLOR_INFO}getting it from git${COLOR_DOTS}...${COLOR_RESET}"
+                                        git clone https://github.com/curl/curl.git
+                                        cd curl
+                                        git checkout curl-8_2_1
+                                        cd ..
+                                        echo -e "${COLOR_INFO}archiving it${COLOR_DOTS}...${COLOR_RESET}"
+                                        tar -czf curl-from-git.tar.gz ./curl
+                                else
+                                        echo -e "${COLOR_INFO}unpacking it${COLOR_DOTS}...${COLOR_RESET}"
+                                        tar -xzf curl-from-git.tar.gz
+                                fi
+                                echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
+                                cd curl
+                                mkdir -p build
+                                cd build
+                                cmake "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DOPENSSL_ROOT_DIR="$SOURCES_ROOT/openssl" -DBUILD_CURL_EXE=OFF -DBUILD_TESTING=OFF -DCURL_USE_LIBSSH2=OFF -DBUILD_SHARED_LIBS=OFF -DCURL_DISABLE_LDAP=ON -DCURL_STATICLIB=ON -DCURL_USE_LIBPSL=OFF -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" ..
+                                echo " " >> lib/curl_config.h
+                                echo "#define HAVE_POSIX_STRERROR_R 1" >> lib/curl_config.h
+                                echo " " >> lib/curl_config.h
+                                cd ../..
+                        fi
+                        echo -e "${COLOR_INFO}building it${COLOR_DOTS}...${COLOR_RESET}"
+                        cd curl/build
+                        $MAKE ${PARALLEL_MAKE_OPTIONS}
+                        $MAKE ${PARALLEL_MAKE_OPTIONS} install
+                        # if [ "$DEBUG" = "1" ];
+                        # then
+                        #       mv "$INSTALL_ROOT/lib/libcurl-d.a" "$INSTALL_ROOT/lib/libcurl.a" &> /dev/null
+                        # fi
+                        cd ..
+                        export PKG_CONFIG_PATH=$PKG_CONFIG_PATH_SAVED
+                        export PKG_CONFIG_PATH_SAVED=
+                        cd "$SOURCES_ROOT"
+                else
+                        echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
+                fi
+        fi
 fi
 
 if [ "$WITH_MICRO_HTTP_D" = "yes" ];
@@ -1000,7 +1009,7 @@ then
 				cd jsoncpp
 				mkdir -p build
 				cd build
-				$CMAKE "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" \
+				$CMAKE "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" \
 					-DBUILD_SHARED_LIBS=NO \
 					-DBUILD_STATIC_LIBS=YES \
 					..
@@ -1021,63 +1030,60 @@ fi
 
 if [ "$WITH_JSONRPCCPP" = "yes" ];
 then
-	echo -e "${COLOR_SEPARATOR}==================== ${COLOR_PROJECT_NAME}libJsonRpcC++${COLOR_SEPARATOR} ================================${COLOR_RESET}"
-	if [ "$UNIX_SYSTEM_NAME" = "Darwin" ];
-	then
-		echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
-	else
-		if [ ! -f "$INSTALL_ROOT/lib/libjsonrpccpp-server.a" ];
-		then
-			env_restore
-			cd "$SOURCES_ROOT"
-			if [ ! -d "libjson-rpc-cpp" ];
-			then
-				#
-				#echo -e "${COLOR_INFO}getting it from git${COLOR_DOTS}...${COLOR_RESET}"
-				#git clone git@github.com:cinemast/libjson-rpc-cpp.git
-				#
-				echo -e "${COLOR_INFO}unpacking it${COLOR_DOTS}...${COLOR_RESET}"
-				unzip -o "$PREDOWNLOADED_ROOT/libjson-rpc-cpp.zip"
-				cp -r libjson-rpc-cpp-develop libjson-rpc-cpp
-				#
-				echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
-				cd libjson-rpc-cpp
-				mkdir -p build
-				cd build
-				$CMAKE "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" \
-					-DBUILD_SHARED_LIBS=NO \
-					-DBUILD_STATIC_LIBS=YES \
-					-DUNIX_DOMAIN_SOCKET_SERVER=YES \
-					-DUNIX_DOMAIN_SOCKET_CLIENT=YES \
-					-DFILE_DESCRIPTOR_SERVER=YES \
-					-DFILE_DESCRIPTOR_CLIENT=YES \
-					-DTCP_SOCKET_SERVER=YES \
-					-DTCP_SOCKET_CLIENT=YES \
-					-DREDIS_SERVER=NO \
-					-DREDIS_CLIENT=NO \
-					-DHTTP_SERVER=YES \
-					-DHTTP_CLIENT=YES \
-					-DCOMPILE_TESTS=NO \
-					-DCOMPILE_STUBGEN=YES \
-					-DCOMPILE_EXAMPLES=NO \
-					-DWITH_COVERAGE=NO \
-					-DARGTABLE_INCLUDE_DIR="$SOURCES_ROOT/argtable2/src" \
-					-DARGTABLE_LIBRARY="$INSTALL_ROOT/lib/libargtable2${DEBUG_D}.a" \
-					-DJSONCPP_INCLUDE_DIR="$INSTALL_ROOT/include" \
-					..
-				cd ..
-			else
-				cd libjson-rpc-cpp
-			fi
-			echo -e "${COLOR_INFO}building it${COLOR_DOTS}...${COLOR_RESET}"
-			cd build
-			$MAKE ${PARALLEL_MAKE_OPTIONS}
-			$MAKE ${PARALLEL_MAKE_OPTIONS} install
-			cd "$SOURCES_ROOT"
-		else
-			echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
-		fi
-	fi
+        echo -e "${COLOR_SEPARATOR}==================== ${COLOR_PROJECT_NAME}libJsonRpcC++${COLOR_SEPARATOR} ================================${COLOR_RESET}"
+        if [ "$UNIX_SYSTEM_NAME" = "Darwin" ];
+        then
+                echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
+        else
+                if [ ! -f "$INSTALL_ROOT/lib/libjsonrpccpp-server.a" ];
+                then
+                        env_restore
+                        cd "$SOURCES_ROOT"
+                        if [ ! -d "libjson-rpc-cpp" ];
+                        then
+                                echo -e "${COLOR_INFO}unpacking it${COLOR_DOTS}...${COLOR_RESET}"
+                                unzip -o "$PREDOWNLOADED_ROOT/libjson-rpc-cpp.zip"
+                                cp -r libjson-rpc-cpp-develop libjson-rpc-cpp
+                                echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
+                                cd libjson-rpc-cpp
+                                mkdir -p build
+                                cd build
+                                sed -i 's/SET CMP0042 OLD/SET CMP0042 NEW/g' ../CMakeLists.txt
+                                $CMAKE "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_MAJOR_VERSION=1  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" \
+                                        -DBUILD_SHARED_LIBS=NO \
+                                        -DBUILD_STATIC_LIBS=YES \
+                                        -DUNIX_DOMAIN_SOCKET_SERVER=YES \
+                                        -DUNIX_DOMAIN_SOCKET_CLIENT=YES \
+                                        -DFILE_DESCRIPTOR_SERVER=YES \
+                                        -DFILE_DESCRIPTOR_CLIENT=YES \
+                                        -DTCP_SOCKET_SERVER=YES \
+                                        -DTCP_SOCKET_CLIENT=YES \
+                                        -DREDIS_SERVER=NO \
+                                        -DREDIS_CLIENT=NO \
+                                        -DHTTP_SERVER=YES \
+                                        -DHTTP_CLIENT=YES \
+                                        -DCOMPILE_TESTS=NO \
+                                        -DCOMPILE_STUBGEN=YES \
+                                        -DCOMPILE_EXAMPLES=NO \
+                                        -DWITH_COVERAGE=NO \
+                                        -DARGTABLE_INCLUDE_DIR="$SOURCES_ROOT/argtable2/src" \
+                                        -DARGTABLE_LIBRARY="$INSTALL_ROOT/lib/libargtable2${DEBUG_D}.a" \
+                                        -DJSONCPP_INCLUDE_DIR="$INSTALL_ROOT/include" \
+                                        -DJSONCPP_LIBRARY="$INSTALL_ROOT/lib/libjsoncpp.a" \
+                                        ..
+                                cd ..
+                        else
+                                cd libjson-rpc-cpp
+                        fi
+                        echo -e "${COLOR_INFO}building it${COLOR_DOTS}...${COLOR_RESET}"
+                        cd build
+                        $MAKE ${PARALLEL_MAKE_OPTIONS}
+                        $MAKE ${PARALLEL_MAKE_OPTIONS} install
+                        cd "$SOURCES_ROOT"
+                else
+                        echo -e "${COLOR_SUCCESS}SKIPPED${COLOR_RESET}"
+                fi
+        fi
 fi
 
 echo -e "${COLOR_SEPARATOR}===================================================================${COLOR_RESET}"
