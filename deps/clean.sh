@@ -119,7 +119,7 @@ rm -rf ./openssl
 rm -rf ./curl
 rm -rf ./libuv
 rm -rf ./libwebsockets
-rm -rf ./boost_1_68_0
+rm -rf ./boost_*
 rm -rf ./argtable2
 rm -rf ./nettle-2.0
 rm -rf ./nettle-3.4.1
