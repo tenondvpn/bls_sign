@@ -39,7 +39,7 @@ find_library( CRYPTOPP_LIBRARY NAMES "crypto" PATHS "${DEPS_INSTALL_ROOT}/lib" )
 
 set( HUNTER_ENABLED OFF )
 
-option(BUILD_TESTS "Build tests" ON)
+option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_WITH_FPIC "Build with -fPIC" OFF)
 
 option( BLS_PROFILING "Build for profiling" OFF )
