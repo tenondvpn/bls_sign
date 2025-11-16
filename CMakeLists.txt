@@ -29,7 +29,7 @@ message(INFO "---- DEPS_INSTALL_ROOT in BLS is: ${DEPS_INSTALL_ROOT}")
 include_directories( "${DEPS_INSTALL_ROOT}/include" ${CMAKE_BINARY_DIR}/deps/include )
 link_directories( "${DEPS_INSTALL_ROOT}/lib" )
 set( CMAKE_PREFIX_PATH "${DEPS_INSTALL_ROOT}" )
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=type-limits")
 set( LIBBLS_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake" CACHE PATH "The path to the cmake directory" )
 list( APPEND CMAKE_MODULE_PATH ${LIBBLS_CMAKE_DIR} )
 

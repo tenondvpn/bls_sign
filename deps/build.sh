@@ -757,13 +757,13 @@ then
 		echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
 		if [ "$UNIX_SYSTEM_NAME" = "Darwin" ];
 		then
-			eval ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_DEBUG_OPTIONS}" --enable-cxx --enable-static --disable-shared --build=x86_64-apple-darwin#{OS.kernel_version.major} --prefix="$INSTALL_ROOT"
+			eval ./configure CC="/usr/local/gcc15/bin/gcc -std=c11" "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_DEBUG_OPTIONS}" --enable-cxx --enable-static --disable-shared --build=x86_64-apple-darwin#{OS.kernel_version.major} --prefix="$INSTALL_ROOT"
 		else
 			if [[ "${WITH_EMSCRIPTEN}" -eq 1 ]];
 			then
-				eval emconfigure ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_CROSSCOMPILING_OPTS_GMP}" "${CONF_DEBUG_OPTIONS}" --disable-assembly --host none --enable-cxx --prefix="$INSTALL_ROOT"
+				CC="/usr/local/gcc15/bin/gcc -std=c11" eval emconfigure ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_CROSSCOMPILING_OPTS_GMP}" "${CONF_DEBUG_OPTIONS}" --disable-assembly --host none --enable-cxx --prefix="$INSTALL_ROOT"
 			else
-				eval ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_CROSSCOMPILING_OPTS_GMP}" "${CONF_DEBUG_OPTIONS}" --enable-cxx --enable-static --disable-shared --prefix="$INSTALL_ROOT"
+				CC="/usr/local/gcc15/bin/gcc -std=c11" eval ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_CROSSCOMPILING_OPTS_GMP}" "${CONF_DEBUG_OPTIONS}" --enable-cxx --enable-static --disable-shared --prefix="$INSTALL_ROOT"
 			fi
 		fi
 		echo -e "${COLOR_INFO}building it${COLOR_DOTS}...${COLOR_RESET}"
@@ -794,6 +794,7 @@ then
 				eval git clone https://github.com/scipr-lab/libff.git --recursive # libff
 			fi
 		cd libff
+		sed -i '3594i\#ifdef MIE_USE_X64ASM' ./depends/ate-pairing/src/zm2.cpp && sed -i '3690i\#endif' ./depends/ate-pairing/src/zm2.cpp
 		echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
 		eval git fetch
 		eval git checkout 03b719a7c81757071f99fc60be1f7f7694e51390
@@ -962,7 +963,7 @@ then
 			if [ ! -d "libmicrohttpd" ];
 			then
 				echo -e "${COLOR_INFO}getting it from git${COLOR_DOTS}...${COLOR_RESET}"
-				git clone https://github.com/scottjg/libmicrohttpd.git
+				git clone https://github.com/Karlson2k/libmicrohttpd.git 
 				echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
 				cd libmicrohttpd
 				MHD_HTTPS_OPT=""
@@ -1049,6 +1050,7 @@ then
                                 mkdir -p build
                                 cd build
                                 sed -i 's/SET CMP0042 OLD/SET CMP0042 NEW/g' ../CMakeLists.txt
+				sed -i 's/HttpServer\:\:callback\,/(MHD_AccessHandlerCallback)HttpServer\:\:callback\,/g' ../src/jsonrpccpp/server/connectors/httpserver.cpp
                                 $CMAKE "${CMAKE_CROSSCOMPILING_OPTS}" -DCMAKE_MAJOR_VERSION=1  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_INSTALL_PREFIX="$INSTALL_ROOT" -DCMAKE_BUILD_TYPE="$TOP_CMAKE_BUILD_TYPE" \
                                         -DBUILD_SHARED_LIBS=NO \
                                         -DBUILD_STATIC_LIBS=YES \
