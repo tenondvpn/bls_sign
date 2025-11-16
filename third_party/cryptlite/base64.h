@@ -189,7 +189,7 @@ public:
 
 private:
     static const char enctable[65];
-    static const char dectable[128];
+    static const int8_t dectable[128];
 
 };  // end of class
 
