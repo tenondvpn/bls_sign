@@ -599,7 +599,7 @@ then
 	eval ./emsdk install latest
 	eval ./emsdk activate latest
 	source ./emsdk_env.sh
-	cd ..	
+	cd ..
 fi
 
 if [ "$WITH_BOOST" = "yes" ];
@@ -757,13 +757,13 @@ then
 		echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
 		if [ "$UNIX_SYSTEM_NAME" = "Darwin" ];
 		then
-			CC="/usr/local/gcc15/bin/gcc -std=c11" eval ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_DEBUG_OPTIONS}" --disable-assembly --enable-cxx --enable-static --disable-shared --build=x86_64-apple-darwin#{OS.kernel_version.major} --prefix="$INSTALL_ROOT"
+			CC="gcc -std=c11" eval ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_DEBUG_OPTIONS}" --disable-assembly --enable-cxx --enable-static --disable-shared --build=x86_64-apple-darwin#{OS.kernel_version.major} --prefix="$INSTALL_ROOT"
 		else
 			if [[ "${WITH_EMSCRIPTEN}" -eq 1 ]];
 			then
-				CC="/usr/local/gcc15/bin/gcc -std=c11" eval emconfigure ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_CROSSCOMPILING_OPTS_GMP}" "${CONF_DEBUG_OPTIONS}" --disable-assembly --host none --enable-cxx --prefix="$INSTALL_ROOT"
+				CC="gcc -std=c11" eval emconfigure ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_CROSSCOMPILING_OPTS_GMP}" "${CONF_DEBUG_OPTIONS}" --disable-assembly --host none --enable-cxx --prefix="$INSTALL_ROOT"
 			else
-				CC="/usr/local/gcc15/bin/gcc -std=c11" eval ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_CROSSCOMPILING_OPTS_GMP}" "${CONF_DEBUG_OPTIONS}" --disable-assembly --enable-cxx --enable-static --disable-shared --prefix="$INSTALL_ROOT"
+				CC="gcc -std=c11" eval ./configure "${CONF_CROSSCOMPILING_OPTS_GENERIC}" "${CONF_CROSSCOMPILING_OPTS_GMP}" "${CONF_DEBUG_OPTIONS}" --disable-assembly --enable-cxx --enable-static --disable-shared --prefix="$INSTALL_ROOT"
 			fi
 		fi
 		echo -e "${COLOR_INFO}building it${COLOR_DOTS}...${COLOR_RESET}"
@@ -795,6 +795,7 @@ then
 			fi
 		cd libff
 		sed -i '3594i\#ifdef MIE_USE_X64ASM' ./depends/ate-pairing/src/zm2.cpp && sed -i '3690i\#endif' ./depends/ate-pairing/src/zm2.cpp
+        sed -i 's/bool/int/g'  deps/argtable2/src/arg_int.c
 		echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
 		eval git fetch
 		eval git checkout 03b719a7c81757071f99fc60be1f7f7694e51390
@@ -963,7 +964,7 @@ then
 			if [ ! -d "libmicrohttpd" ];
 			then
 				echo -e "${COLOR_INFO}getting it from git${COLOR_DOTS}...${COLOR_RESET}"
-				git clone https://github.com/Karlson2k/libmicrohttpd.git 
+				git clone https://github.com/Karlson2k/libmicrohttpd.git
 				echo -e "${COLOR_INFO}configuring it${COLOR_DOTS}...${COLOR_RESET}"
 				cd libmicrohttpd
 				MHD_HTTPS_OPT=""
